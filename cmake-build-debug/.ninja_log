@@ -1,0 +1,6 @@
+# ninja log v6
+5	141	1733059512179191856	build.ninja	496d0c0c2507a9eb
+1	1344	1733059329308689523	CMakeFiles/RubicsCubeSolver.dir/GenericRubicsCube.cpp.o	9fdd0703bb8380db
+1	1347	1733059329308987434	CMakeFiles/RubicsCubeSolver.dir/RubiksCube3dArray.cpp.o	50c016059031e0ca
+0	1399	1733059329308229199	CMakeFiles/RubicsCubeSolver.dir/main.cpp.o	d554ad39a3a77d5
+1399	1608	1733059330706749481	RubicsCubeSolver	e5c18df6966b1eae
