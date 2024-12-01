@@ -89,6 +89,22 @@ public:
         }
         return true;
     }
+
+    //for printing
+    void printCube() const {
+        const string faceNames[6] = {"Front", "Back", "Left", "Right", "Up", "Down"};
+
+        for (int face = 0; face < 6; face++) {
+            cout << faceNames[face] << " Face:" << endl;
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    std::cout << cube[face][i][j] << " ";
+                }
+                cout << endl;
+            }
+            cout << endl;
+        }
+    }
     // Move implementation examples (I'll show front and right moves)
 
     GenericRubiksCube& f() override {
@@ -264,11 +280,6 @@ public:
         this->d();
         return *this;
     }
-
-
-
-
-
 
 
 

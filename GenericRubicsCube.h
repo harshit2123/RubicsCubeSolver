@@ -15,13 +15,13 @@ enum class COLOR{
     ORANGE,
     YELLOW
 };
-enum Face {
-    UP,
-    LEFT,
-    FRONT,
-    RIGHT,
-    BACK,
-    DOWN
+enum class Face {
+    FRONT = 0,
+    BACK = 1,
+    LEFT = 2,
+    RIGHT = 3,
+    UP = 4,
+    DOWN = 5
 };
 enum class MOVE {
     L, LPRIME, L2,
@@ -69,6 +69,9 @@ class GenericRubiksCube {
     virtual GenericRubiksCube& d() = 0;       // Down clockwise
     virtual GenericRubiksCube& dPrime() = 0;  // Down counter-clockwise
     virtual GenericRubiksCube& d2() = 0;      // Down 180-degree turn
+
+    // Print function
+    virtual void printCube() const = 0; // Pure virtual function
 
 };
 

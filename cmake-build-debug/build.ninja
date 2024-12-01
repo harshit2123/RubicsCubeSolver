@@ -55,14 +55,20 @@ build CMakeFiles/RubicsCubeSolver.dir/main.cpp.o: CXX_COMPILER__RubicsCubeSolver
   OBJECT_DIR = CMakeFiles/RubicsCubeSolver.dir
   OBJECT_FILE_DIR = CMakeFiles/RubicsCubeSolver.dir
 
-build CMakeFiles/RubicsCubeSolver.dir/RubicsCube.cpp.o: CXX_COMPILER__RubicsCubeSolver_unscanned_Debug /Users/harshit/CLionProjects/RubicsCubeSolver/RubicsCube.cpp || cmake_object_order_depends_target_RubicsCubeSolver
-  DEP_FILE = CMakeFiles/RubicsCubeSolver.dir/RubicsCube.cpp.o.d
+build CMakeFiles/RubicsCubeSolver.dir/GenericRubicsCube.cpp.o: CXX_COMPILER__RubicsCubeSolver_unscanned_Debug /Users/harshit/CLionProjects/RubicsCubeSolver/GenericRubicsCube.cpp || cmake_object_order_depends_target_RubicsCubeSolver
+  DEP_FILE = CMakeFiles/RubicsCubeSolver.dir/GenericRubicsCube.cpp.o.d
   FLAGS = -g -std=gnu++2b -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/RubicsCubeSolver.dir
   OBJECT_FILE_DIR = CMakeFiles/RubicsCubeSolver.dir
 
 build CMakeFiles/RubicsCubeSolver.dir/RubiksCube3dArray.cpp.o: CXX_COMPILER__RubicsCubeSolver_unscanned_Debug /Users/harshit/CLionProjects/RubicsCubeSolver/RubiksCube3dArray.cpp || cmake_object_order_depends_target_RubicsCubeSolver
   DEP_FILE = CMakeFiles/RubicsCubeSolver.dir/RubiksCube3dArray.cpp.o.d
+  FLAGS = -g -std=gnu++2b -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/RubicsCubeSolver.dir
+  OBJECT_FILE_DIR = CMakeFiles/RubicsCubeSolver.dir
+
+build CMakeFiles/RubicsCubeSolver.dir/RubiksCube1DArray.cpp.o: CXX_COMPILER__RubicsCubeSolver_unscanned_Debug /Users/harshit/CLionProjects/RubicsCubeSolver/RubiksCube1DArray.cpp || cmake_object_order_depends_target_RubicsCubeSolver
+  DEP_FILE = CMakeFiles/RubicsCubeSolver.dir/RubiksCube1DArray.cpp.o.d
   FLAGS = -g -std=gnu++2b -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/RubicsCubeSolver.dir
   OBJECT_FILE_DIR = CMakeFiles/RubicsCubeSolver.dir
@@ -75,7 +81,7 @@ build CMakeFiles/RubicsCubeSolver.dir/RubiksCube3dArray.cpp.o: CXX_COMPILER__Rub
 #############################################
 # Link the executable RubicsCubeSolver
 
-build RubicsCubeSolver: CXX_EXECUTABLE_LINKER__RubicsCubeSolver_Debug CMakeFiles/RubicsCubeSolver.dir/main.cpp.o CMakeFiles/RubicsCubeSolver.dir/RubicsCube.cpp.o CMakeFiles/RubicsCubeSolver.dir/RubiksCube3dArray.cpp.o
+build RubicsCubeSolver: CXX_EXECUTABLE_LINKER__RubicsCubeSolver_Debug CMakeFiles/RubicsCubeSolver.dir/main.cpp.o CMakeFiles/RubicsCubeSolver.dir/GenericRubicsCube.cpp.o CMakeFiles/RubicsCubeSolver.dir/RubiksCube3dArray.cpp.o CMakeFiles/RubicsCubeSolver.dir/RubiksCube1DArray.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk
   OBJECT_DIR = CMakeFiles/RubicsCubeSolver.dir
   POST_BUILD = :
