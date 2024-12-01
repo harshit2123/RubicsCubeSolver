@@ -4,11 +4,33 @@
 
 #ifndef GENERICRUBICSCUBE_H
 #define GENERICRUBICSCUBE_H
-#include <iostream>
-#include <vector>
+#include "iostream"
+using namespace std;
 
-enum class COLOR{WHITE, GREEN,RED,BLUE,ORANGE,YELLOW};
-enum Face{UP,LEFT,FRONT,RIGHT,BACK,DOWN};
+enum class COLOR{
+    WHITE,
+    GREEN,
+    RED,
+    BLUE,
+    ORANGE,
+    YELLOW
+};
+enum Face {
+    UP,
+    LEFT,
+    FRONT,
+    RIGHT,
+    BACK,
+    DOWN
+};
+enum class MOVE {
+    L, LPRIME, L2,
+    R, RPRIME, R2,
+    U, UPRIME, U2,
+    D, DPRIME, D2,
+    F, FPRIME, F2,
+    B, BPRIME, B2
+};
 
 // abstract class to define the generic Rubik'sCube class
 class GenericRubiksCube {
