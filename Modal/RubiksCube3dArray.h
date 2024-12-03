@@ -4,8 +4,10 @@
 
 #ifndef RUBIKSCUBE3DARRAY_H
 #define RUBIKSCUBE3DARRAY_H
+#include<iostream>
+using namespace std;
+#include "GenericRubiksCube.h"
 
-#include "GenericRubicsCube.h"
 
 class RubiksCube3dArray : public GenericRubiksCube{
 private:
@@ -60,10 +62,10 @@ public:
             }
         }
     }
-    // Get color of specific position
-    //using virtual function - getColor from the abstract class
+
+    // Get color of specific position //using virtual function - getColor from the abstract class
     //enum Face { FRONT = 0, BACK = 1, LEFT = 2, RIGHT = 3, TOP = 4, BOTTOM = 5 };
-    COLOR getColor(Face face, unsigned row, unsigned col) override {
+    COLOR getColor(FACE face, unsigned row, unsigned col) const   {
         char color = cube[int(face)][row][col];
         switch (color) {
             case 'W': return COLOR::WHITE;
@@ -90,36 +92,19 @@ public:
         return true;
     }
 
-    //for printing
-    void printCube() const {
-        const string faceNames[6] = {"Front", "Back", "Left", "Right", "Up", "Down"};
-
-        for (int face = 0; face < 6; face++) {
-            cout << faceNames[face] << " Face:" << endl;
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    std::cout << cube[face][i][j] << " ";
-                }
-                cout << endl;
-            }
-            cout << endl;
-        }
-    }
-    // Move implementation examples (I'll show front and right moves)
-
     GenericRubiksCube& f() override {
-        rotateFace(static_cast<int>(Face::FRONT));
+        rotateFace(static_cast<int>(FACE::FRONT));
 
         char temp[3];
         // Store the top edge of the UP face
-        for (int i = 0; i < 3; i++) temp[i] = cube[static_cast<int>(Face::UP)][2][i];
+        for (int i = 0; i < 3; i++) temp[i] = cube[static_cast<int>(FACE::UP)][2][i];
 
         // Move edges: Left → Top, Bottom → Left, Right → Bottom, Temp → Right
         for (int i = 0; i < 3; i++) {
-            cube[static_cast<int>(Face::UP)][2][i] = cube[static_cast<int>(Face::LEFT)][2 - i][2];
-            cube[static_cast<int>(Face::LEFT)][2 - i][2] = cube[static_cast<int>(Face::DOWN)][0][2 - i];
-            cube[static_cast<int>(Face::DOWN)][0][2 - i] = cube[static_cast<int>(Face::RIGHT)][i][0];
-            cube[static_cast<int>(Face::RIGHT)][i][0] = temp[i];
+            cube[static_cast<int>(FACE::UP)][2][i] = cube[static_cast<int>(FACE::LEFT)][2 - i][2];
+            cube[static_cast<int>(FACE::LEFT)][2 - i][2] = cube[static_cast<int>(FACE::DOWN)][0][2 - i];
+            cube[static_cast<int>(FACE::DOWN)][0][2 - i] = cube[static_cast<int>(FACE::RIGHT)][i][0];
+            cube[static_cast<int>(FACE::RIGHT)][i][0] = temp[i];
         }
 
         return *this;
@@ -137,18 +122,18 @@ public:
     }
 
     GenericRubiksCube& u() override {
-        rotateFace(static_cast<int>(Face::UP));
+        rotateFace(static_cast<int>(FACE::UP));
 
         char temp[3];
         // Store the back edge
-        for (int i = 0; i < 3; i++) temp[i] = cube[static_cast<int>(Face::BACK)][0][2 - i];
+        for (int i = 0; i < 3; i++) temp[i] = cube[static_cast<int>(FACE::BACK)][0][2 - i];
 
         // Move edges: Left → Back, Front → Left, Right → Front, Temp → Right
         for (int i = 0; i < 3; i++) {
-            cube[static_cast<int>(Face::BACK)][0][2 - i] = cube[static_cast<int>(Face::LEFT)][0][2 - i];
-            cube[static_cast<int>(Face::LEFT)][0][2 - i] = cube[static_cast<int>(Face::FRONT)][0][2 - i];
-            cube[static_cast<int>(Face::FRONT)][0][2 - i] = cube[static_cast<int>(Face::RIGHT)][0][2 - i];
-            cube[static_cast<int>(Face::RIGHT)][0][2 - i] = temp[i];
+            cube[static_cast<int>(FACE::BACK)][0][2 - i] = cube[static_cast<int>(FACE::LEFT)][0][2 - i];
+            cube[static_cast<int>(FACE::LEFT)][0][2 - i] = cube[static_cast<int>(FACE::FRONT)][0][2 - i];
+            cube[static_cast<int>(FACE::FRONT)][0][2 - i] = cube[static_cast<int>(FACE::RIGHT)][0][2 - i];
+            cube[static_cast<int>(FACE::RIGHT)][0][2 - i] = temp[i];
         }
 
         return *this;
@@ -166,18 +151,18 @@ public:
     }
 
     GenericRubiksCube& l() override {
-        rotateFace(static_cast<int>(Face::LEFT));
+        rotateFace(static_cast<int>(FACE::LEFT));
 
         char temp[3];
         // Store the front left edge
-        for (int i = 0; i < 3; i++) temp[i] = cube[static_cast<int>(Face::FRONT)][i][0];
+        for (int i = 0; i < 3; i++) temp[i] = cube[static_cast<int>(FACE::FRONT)][i][0];
 
         // Move edges: Down → Front, Back → Down, Up → Back, Temp → Up
         for (int i = 0; i < 3; i++) {
-            cube[static_cast<int>(Face::FRONT)][i][0] = cube[static_cast<int>(Face::DOWN)][i][0];
-            cube[static_cast<int>(Face::DOWN)][i][0] = cube[static_cast<int>(Face::BACK)][2 - i][2];
-            cube[static_cast<int>(Face::BACK)][2 - i][2] = cube[static_cast<int>(Face::UP)][i][0];
-            cube[static_cast<int>(Face::UP)][i][0] = temp[i];
+            cube[static_cast<int>(FACE::FRONT)][i][0] = cube[static_cast<int>(FACE::DOWN)][i][0];
+            cube[static_cast<int>(FACE::DOWN)][i][0] = cube[static_cast<int>(FACE::BACK)][2 - i][2];
+            cube[static_cast<int>(FACE::BACK)][2 - i][2] = cube[static_cast<int>(FACE::UP)][i][0];
+            cube[static_cast<int>(FACE::UP)][i][0] = temp[i];
         }
 
         return *this;
@@ -195,18 +180,18 @@ public:
     };
 
     GenericRubiksCube& r() override {
-        rotateFace(static_cast<int>(Face::RIGHT));
+        rotateFace(static_cast<int>(FACE::RIGHT));
 
         char temp[3];
         // Store the front edge
-        for (int i = 0; i < 3; i++) temp[i] = cube[static_cast<int>(Face::FRONT)][i][2];
+        for (int i = 0; i < 3; i++) temp[i] = cube[static_cast<int>(FACE::FRONT)][i][2];
 
         // Move edges: Down → Front, Back → Down, Up → Back, Temp → Up
         for (int i = 0; i < 3; i++) {
-            cube[static_cast<int>(Face::FRONT)][i][2] = cube[static_cast<int>(Face::DOWN)][i][2];
-            cube[static_cast<int>(Face::DOWN)][i][2] = cube[static_cast<int>(Face::BACK)][2 - i][0];
-            cube[static_cast<int>(Face::BACK)][2 - i][0] = cube[static_cast<int>(Face::UP)][i][2];
-            cube[static_cast<int>(Face::UP)][i][2] = temp[i];
+            cube[static_cast<int>(FACE::FRONT)][i][2] = cube[static_cast<int>(FACE::DOWN)][i][2];
+            cube[static_cast<int>(FACE::DOWN)][i][2] = cube[static_cast<int>(FACE::BACK)][2 - i][0];
+            cube[static_cast<int>(FACE::BACK)][2 - i][0] = cube[static_cast<int>(FACE::UP)][i][2];
+            cube[static_cast<int>(FACE::UP)][i][2] = temp[i];
         }
 
         return *this;
@@ -224,18 +209,18 @@ public:
     }
 
     GenericRubiksCube& b() override {
-        rotateFace(static_cast<int>(Face::BACK));
+        rotateFace(static_cast<int>(FACE::BACK));
 
         char temp[3];
         // Store the top edge
-        for (int i = 0; i < 3; i++) temp[i] = cube[static_cast<int>(Face::UP)][0][2 - i];
+        for (int i = 0; i < 3; i++) temp[i] = cube[static_cast<int>(FACE::UP)][0][2 - i];
 
         // Move edges: Right → Top, Bottom → Right, Left → Bottom, Temp → Left
         for (int i = 0; i < 3; i++) {
-            cube[static_cast<int>(Face::UP)][0][2 - i] = cube[static_cast<int>(Face::RIGHT)][i][2];
-            cube[static_cast<int>(Face::RIGHT)][i][2] = cube[static_cast<int>(Face::DOWN)][2][i];
-            cube[static_cast<int>(Face::DOWN)][2][i] = cube[static_cast<int>(Face::LEFT)][2 - i][0];
-            cube[static_cast<int>(Face::LEFT)][2 - i][0] = temp[i];
+            cube[static_cast<int>(FACE::UP)][0][2 - i] = cube[static_cast<int>(FACE::RIGHT)][i][2];
+            cube[static_cast<int>(FACE::RIGHT)][i][2] = cube[static_cast<int>(FACE::DOWN)][2][i];
+            cube[static_cast<int>(FACE::DOWN)][2][i] = cube[static_cast<int>(FACE::LEFT)][2 - i][0];
+            cube[static_cast<int>(FACE::LEFT)][2 - i][0] = temp[i];
         }
 
         return *this;
@@ -253,18 +238,18 @@ public:
     }
 
     GenericRubiksCube& d() override {
-        rotateFace(static_cast<int>(Face::DOWN));
+        rotateFace(static_cast<int>(FACE::DOWN));
 
         char temp[3];
         // Store the front bottom edge
-        for (int i = 0; i < 3; i++) temp[i] = cube[static_cast<int>(Face::FRONT)][2][i];
+        for (int i = 0; i < 3; i++) temp[i] = cube[static_cast<int>(FACE::FRONT)][2][i];
 
         // Move edges: Left → Front, Back → Left, Right → Back, Temp → Right
         for (int i = 0; i < 3; i++) {
-            cube[static_cast<int>(Face::FRONT)][2][i] = cube[static_cast<int>(Face::LEFT)][2][i];
-            cube[static_cast<int>(Face::LEFT)][2][i] = cube[static_cast<int>(Face::BACK)][2][i];
-            cube[static_cast<int>(Face::BACK)][2][i] = cube[static_cast<int>(Face::RIGHT)][2][i];
-            cube[static_cast<int>(Face::RIGHT)][2][i] = temp[i];
+            cube[static_cast<int>(FACE::FRONT)][2][i] = cube[static_cast<int>(FACE::LEFT)][2][i];
+            cube[static_cast<int>(FACE::LEFT)][2][i] = cube[static_cast<int>(FACE::BACK)][2][i];
+            cube[static_cast<int>(FACE::BACK)][2][i] = cube[static_cast<int>(FACE::RIGHT)][2][i];
+            cube[static_cast<int>(FACE::RIGHT)][2][i] = temp[i];
         }
 
         return *this;
@@ -281,6 +266,32 @@ public:
         return *this;
     }
 
+    bool operator==(const RubiksCube3dArray& other) const {
+        // Compare all cube elements
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 3; j++) {
+                for (int k = 0; k < 3; k++) {
+                    if (cube[i][j][k] != other.cube[i][j][k]) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    struct Hash3D {
+        size_t operator()(const RubiksCube3dArray &r1) const {
+            string str="";
+            for (int i=0;i<6;i++) {
+                for (int j=0;j<3;j++) {
+                    for (int k=0;k<3;k++) {
+                        str +=r1.cube[i][j][k];
+                    }
+                }
+            }
+            return hash<string>()(str);
+        }
+    };
 
 
 };

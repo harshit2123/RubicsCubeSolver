@@ -4,7 +4,8 @@
 
 #ifndef GENERICRUBICSCUBE_H
 #define GENERICRUBICSCUBE_H
-#include "iostream"
+#include<iostream>
+#include <vector>
 using namespace std;
 
 enum class COLOR{
@@ -15,7 +16,7 @@ enum class COLOR{
     ORANGE,
     YELLOW
 };
-enum class Face {
+enum class FACE {
     FRONT = 0,
     BACK = 1,
     LEFT = 2,
@@ -37,12 +38,23 @@ class GenericRubiksCube {
     public:
     //virtual destructor
     virtual ~GenericRubiksCube()= default;
-
     //Pure virtual function to make it Abstract class.
     //used unsigned to tell the compiler the variable can only store non-negative values
-    virtual COLOR getColor(Face face, unsigned row, unsigned col) = 0;
+    virtual COLOR getColor(FACE face, unsigned row, unsigned col) const = 0; // virtual hai to usko derived class m implement krenge
+
+    static  char getColorLetter(COLOR color);
+
     virtual bool isSolved() const =0;
 
+    static string getMove(MOVE ind);
+
+    void printCube() const;
+
+    GenericRubiksCube &move(MOVE ind);
+
+    vector<MOVE> randomShuffleCube(unsigned int times);
+
+    GenericRubiksCube &invert(MOVE ind);
 
     //Moves
     //We have to mak changes in the same cube, that's why we are passing it as a reference
@@ -70,8 +82,7 @@ class GenericRubiksCube {
     virtual GenericRubiksCube& dPrime() = 0;  // Down counter-clockwise
     virtual GenericRubiksCube& d2() = 0;      // Down 180-degree turn
 
-    // Print function
-    virtual void printCube() const = 0; // Pure virtual function
+
 
 };
 

@@ -5,8 +5,9 @@
 #ifndef RUBIKSCUBE1DARRAY_H
 #define RUBIKSCUBE1DARRAY_H
 
-
-#include "GenericRubicsCube.h"
+#include<iostream>
+using namespace std;
+#include "GenericRubiksCube.h"
 class RubiksCube1dArray : public GenericRubiksCube {
 private:
 
@@ -33,6 +34,7 @@ private:
 public:
     char cube[54]{};
 
+    //Constructor for the 1-D array
     RubiksCube1dArray() {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 3; j++) {
@@ -242,7 +244,15 @@ public:
         }
         return *this;
     }
-
+    struct Hash1d {
+        size_t operator()(const RubiksCube1dArray &r1) const {
+            string str = "";
+            for (int i = 0; i < 54; i++) str += r1.cube[i];
+            return hash<string>()(str); // by return this way, we a reconvertingthe cube's state into fixed size integers(the hash value)
+        }
+    };
+    // unordered_map<KeyType, ValueType, MyHashType> um;
+    // by this way unordered map can use custom hash functions.
 };
 
 #endif //RUBIKSCUBE1DARRAY_H
